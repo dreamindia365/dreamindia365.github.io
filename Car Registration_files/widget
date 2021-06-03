@@ -1,0 +1,304 @@
+//For older versions of IE
+if (!document.getElementsByClassName) {
+	document.getElementsByClassName = function(className) {
+		return this.querySelectorAll("." + className);
+	};
+	Element.prototype.getElementsByClassName = document.getElementsByClassName;
+}
+
+function setPoWrapStyles(bfpwdiv) {
+	bfpwdiv.style.fontFamily = style[_bfcfg.btype].powrap.fontFamily;
+	bfpwdiv.style.margin = style[_bfcfg.btype].powrap.margin;
+	bfpwdiv.style.width = style[_bfcfg.btype].powrap.width;
+	bfpwdiv.style.color = style[_bfcfg.btype].powrap.color;
+	bfpwdiv.style.backgroundColor = style[_bfcfg.btype].powrap.backgroundColor;
+
+	if (style[_bfcfg.btype].powrap.borderRadius) {
+		bfpwdiv.style.borderRadius = style[_bfcfg.btype].powrap.borderRadius;
+	}
+
+	if (style[_bfcfg.btype].powrap.display) {
+		bfpwdiv.style.display = style[_bfcfg.btype].powrap.display;
+	}
+
+	if (style[_bfcfg.btype].powrap.height) {
+		bfpwdiv.style.height = style[_bfcfg.btype].powrap.height;
+	}
+
+	if (style[_bfcfg.btype].powrap.position) {
+		bfpwdiv.style.position = style[_bfcfg.btype].powrap.position;
+	}
+
+	if (style[_bfcfg.btype].powrap.top) {
+		bfpwdiv.style.top = style[_bfcfg.btype].powrap.top;
+	}
+}
+
+function setPoSpanStyles(bfspn) {
+	bfspn.style.fontSize = style[_bfcfg.btype].powspan.fontSize;
+	bfspn.style.lineHeight = style[_bfcfg.btype].powspan.lineHeight;
+	bfspn.style.width = style[_bfcfg.btype].powspan.width;
+
+	if (style[_bfcfg.btype].powspan.display) {
+		bfspn.style.display = style[_bfcfg.btype].powspan.display;
+	}
+
+	if (style[_bfcfg.btype].powspan.verticalAlign) {
+		bfspn.style.verticalAlign = style[_bfcfg.btype].powspan.verticalAlign;
+	}
+}
+
+function setPoByStyles(bfpwr) {
+	bfpwr.style.color = style[_bfcfg.btype].powby.color;
+	bfpwr.style.textDecoration = style[_bfcfg.btype].powby.testDecoration;
+}
+
+function initIframe() {
+	var bfdiv = document.getElementById('bf-revz-widget-' + _bfcfg.wid);
+
+
+	if(!bfdiv) {
+		tries++;
+		if (tries > 50) {
+			return false;
+		}
+		setTimeout(initIframe, 500);
+		return;
+	}
+
+	var bfpwdiv = bfdiv.getElementsByClassName('bf-dv');
+	var bfspn = bfdiv.getElementsByClassName('bf-spn');
+	var bfpwr = bfdiv.getElementsByClassName('bf-pwr');
+	var bfpro = bfdiv.getElementsByClassName('bf-pro');
+
+    if (isiOS && _bfcfg.btype == 3) {
+        bfdiv.setAttribute('style', 'text-align: center;-webkit-overflow-scrolling: touch;overflow: auto;');
+    } else {
+        bfdiv.setAttribute('style', 'text-align: center;-webkit-overflow-scrolling: touch;');
+    }
+
+	if (!bfdiv.firstChild) {
+		bfdiv.appendChild(bfi);
+	} else if (bfdiv.firstChild && bfdiv.firstChild.nodeName != 'IFRAME') {
+		bfdiv.insertBefore(bfi, bfdiv.firstChild);
+	}
+
+	if (bfpwdiv.length) {
+		setPoWrapStyles(bfpwdiv[0]);
+	}
+
+	if (bfspn.length) {
+		setPoSpanStyles(bfspn[0]);
+	}
+
+	if (bfpwr.length) {
+        setPoByStyles(bfpwr[0]);
+        bfpwr[0].href = bfpwr[0].href.replace("SRC", window.location.hostname); // to track domain name
+	}
+
+	if (bfpro.length) {
+		setPoByStyles(bfpro[0]);
+	}
+}
+
+var _bfcfg = {};
+var bfi = document.createElement('iframe');
+var style = [];
+var tries = 1;
+var isiOS = navigator.userAgent.match('iPhone')
+		|| navigator.userAgent.match('iPod')
+		|| navigator.userAgent.match('iPad');
+
+_bfcfg.host = 'https://birdeye.com/';
+_bfcfg.account = 156466994069074;
+_bfcfg.ver = 4;
+_bfcfg.btype = 8;
+_bfcfg.wid = 1234567985183;
+_bfcfg.update = 0;
+
+bfi.name = 'bfiframe';
+bfi.src = _bfcfg.host + 'widget/render.php?bid=' + _bfcfg.account + '&wid=' + _bfcfg.btype + '&ver=' + _bfcfg.ver + '&update=' + _bfcfg.update;
+bfi.id = 'bfpublish';
+
+style[2] = {
+	iframe : {
+		height : 140,
+		overflow : 'hidden',
+		scrolling : 'no',
+		width : 140
+	},
+	powrap : {
+		backgroundColor : 'transparent',
+		color : '#666666',
+		fontFamily : '"roboto",sans-serif',
+		margin : '0px auto',
+		position : 'relative',
+		top : '-35px',
+		width : '67px'
+	},
+	powspan : {
+		fontSize : '12px',
+		lineHeight : '14px',
+		width : '67px'
+	},
+	powby : {
+		color : '#FFFFFF',
+		testDecoration : 'none'
+	}
+};
+style[3] = {
+	iframe : {
+		height : 600,
+		overflow : 'hidden',
+		scrolling : 'auto',
+		width : '100%'
+	},
+	powrap : {
+		backgroundColor : 'transparent',
+		color : '#666666',
+		fontFamily : '"roboto",sans-serif',
+		display : 'table',
+		height : '25px',
+		margin : '0px auto',
+		width : '100%'
+	},
+	powspan : {
+		display : 'table-cell',
+		fontSize : '12px',
+		lineHeight : '12px',
+		verticalAlign : 'middle',
+		width : 'auto'
+	},
+	powby : {
+		color : '#0081C8',
+		testDecoration : 'none'
+	}
+};
+style[5] = {
+	iframe : {
+		height : 75,
+		overflow : 'hidden',
+		scrolling : 'no',
+		width : 145
+	},
+	powrap : {
+		backgroundColor : 'transparent',
+		color : '#666666',
+		fontFamily : '"roboto",sans-serif',
+		display : 'table',
+		height : '25px',
+		margin : '0px auto',
+		width : '145px'
+	},
+	powspan : {
+		display : 'table-cell',
+		fontSize : '12px',
+		lineHeight: '12px',
+		verticalAlign : 'middle',
+		width : 'auto'
+	},
+	powby : {
+		color : '#51A8D3',
+		testDecoration : 'none'
+	}
+};
+style[6] = {
+	iframe : {
+		height : 165,
+		overflow : 'hidden',
+		scrolling : 'no',
+		width : 165
+	},
+	powrap : {
+		backgroundColor : '#FAFAFA',
+		borderRadius : '0 0 2px 2px',
+		color : '#666666',
+		display : 'table',
+		fontFamily : '"roboto",sans-serif',
+		height : '25px',
+		margin : '0px auto',
+		width : '165px'
+	},
+	powspan : {
+		display : 'table-cell',
+		fontSize : '12px',
+		lineHeight : '12px',
+		verticalAlign : 'middle',
+		width : 'auto'
+	},
+	powby : {
+		color : '#51A8D3',
+		testDecoration : 'none'
+	}
+};
+style[7] = {
+	iframe : {
+		height : 152,
+		overflow : 'hidden',
+		scrolling : 'no',
+		width : 270
+	},
+	powrap : {
+		backgroundColor : '#FAFAFA',
+		borderRadius : '0 0 2px 2px',
+		color : '#666666',
+		fontFamily : '"roboto",sans-serif',
+		display : 'table',
+		height : '33px',
+		margin : '0px auto',
+		width : '270px'
+	},
+	powspan : {
+		display : 'table-cell',
+		fontSize : '12px',
+		lineHeight : '12px',
+		verticalAlign : 'middle',
+		width : 'auto'
+	},
+	powby : {
+		color : '#51A8D3',
+		testDecoration : 'none'
+	}
+};
+style[8] = {
+	iframe : {
+		height : 170,
+		overflow : 'hidden',
+		scrolling : 'no',
+		width : 270
+	},
+	powrap : {
+		backgroundColor : '#FAFAFA',
+		color : '#666666',
+		fontFamily : '"roboto",sans-serif',
+		display : 'table',
+		height : '25px',
+		margin : '0 auto',
+		width : '270px'
+	},
+	powspan : {
+		display : 'table-cell',
+		fontSize : '12px',
+		lineHeight: '12px',
+		verticalAlign : 'middle',
+		width : 'auto'
+	},
+	powby : {
+		color : '#51A8D3',
+		testDecoration : 'none'
+	}
+};
+bfi.width = style[_bfcfg.btype].iframe.width;
+bfi.height = style[_bfcfg.btype].iframe.height;
+bfi.scrolling = style[_bfcfg.btype].iframe.scrolling;
+bfi.frameBorder = '0';
+bfi.style.borderWidth = 0;
+bfi.style.display = 'block';
+bfi.style.margin = '0 auto';
+bfi.title = 'Customer reviews'
+
+if (style[_bfcfg.btype].iframe.overflow) {
+	bfi.style.overflow = style[_bfcfg.btype].iframe.overflow;
+}
+
+initIframe();
