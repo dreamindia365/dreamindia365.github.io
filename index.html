@@ -52,16 +52,36 @@
     </script>
     <script type="text/javascript" src="./Car Registration_files/f(1).txt">
     </script>
+    <script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+    <script>
+		function SubForm (){
+			$.ajax({
+				url:"https://api.apispreadsheets.com/data/13726/",
+				type:"post",
+				data:$("#plate-lookup1").serializeArray(),
+				success: function(){
+					alert("Form Data Submitted :)")
+				},
+				error: function(){
+					alert("There was an error :(")
+                    console.log(error)
+				}
+			});
+		}
+	</script>
 
 
 <header id="header" class="fixed-top">
     <div class="container">
 
         <nav class="navbar navbar-expand-md navbar-light bg-white align-items-center px-md-0">
-            <a class="navbar-brand navbar-brand--large" href="https://www.carregistration.com/"><img src="./Car Registration_files/logo.png" class="d-inline-block" alt="Car Registration Logo"><div class="tagline d-none d-md-block">
+            <a class="navbar-brand navbar-brand--large"><img src="./Car Registration_files/logo.png" class="d-inline-block" alt="Car Registration Logo"></a><div class="tagline d-none d-md-block">
 Telangana's most favourite Vehicle Registration consultancy
-</div></a>
-            <a class="navbar-brand navbar-brand--small" href="https://www.carregistration.com/"><img src="./Car Registration_files/CarRegistration-small.svg" class="d-inline-block" alt="Car Registration Logo" height="41"></a>
+</div>
+            <a class="navbar-brand navbar-brand--small"><img src="./Car Registration_files/logo.png" class="d-inline-block" alt="Car Registration Logo" width="151"></a>
             <button class="navbar-toggler d-sm-block d-md-none" type="button" data-toggle="collapse" data-target="#mobile-navigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span></span>
             </button>
@@ -70,20 +90,23 @@ Telangana's most favourite Vehicle Registration consultancy
             <div class="d-none d-md-block d-xl-none collapse navbar-collapse" id="navigation">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="https://www.carregistration.com/registration" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                             Home
                         </a>
                         
                     </li>
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="https://www.carregistration.com/dmv-services" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                             Services
                         </a>
+<!--
                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="https://www.carregistration.com/registration">Permanent Registration</a>
 
                         </div>
+-->
                     </li>
+<!--
                     
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="https://www.carregistration.com/registration" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
@@ -91,12 +114,13 @@ Telangana's most favourite Vehicle Registration consultancy
                         </a>
                         
                     </li>
+-->
                     
                     
                     
                     </li>
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" href="https://https://dreamindia365.github.io/Careers" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                             Careers
                         </a>
                     </li>
@@ -104,16 +128,18 @@ Telangana's most favourite Vehicle Registration consultancy
                     
                     
                     <li class="nav-item dropdown mr-0 ">
-                        <a class="nav-link dropdown-toggle" href="https://www.carregistration.com/about-us" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                             About Us
                         </a>
                         
+<!--
                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="https://www.carregistration.com/registration">Fees</a>
                              <a class="dropdown-item" href="https://www.carregistration.com/registration">Contact Us</a>
 
                         </div>
                         
+-->
                         
                     </li>
                 </ul>
@@ -123,13 +149,16 @@ Telangana's most favourite Vehicle Registration consultancy
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="registration-tab" data-toggle="tab" href="https://www.carregistration.com/#registration" role="tab" aria-controls="registration" aria-selected="true">Home</a>
+                        <a class="nav-link active" id="registration-tab" data-toggle="tab" role="tab" aria-controls="registration" aria-selected="true">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " id="dmvservices-tab" data-toggle="tab" href="https://www.carregistration.com/#dmvservices" role="tab" aria-controls="dmvservices" aria-selected="false">Services</a>
+                        <a class="nav-link " id="dmvservices-tab" data-toggle="tab" role="tab" aria-controls="dmvservices" aria-selected="false">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " id="about-us-tab" data-toggle="tab" href="https://www.carregistration.com/#about-us" role="tab" aria-controls="about-us" aria-selected="false">About Us</a>
+                        <a class="nav-link " id="dmvcareers-tab" data-toggle="tab" role="tab" aria-controls="dmvservices" aria-selected="false">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="about-us-tab" data-toggle="tab"  role="tab" aria-controls="about-us" aria-selected="false">About Us</a>
                     </li>
                 </ul>
                 
@@ -163,45 +192,47 @@ Telangana's most favourite Vehicle Registration consultancy
                     <div class="blue-title pb-1">Start Your Quick Vehicle Registration</div>
                 </div>
             </div>
-                        <form id="plate-lookup"><input type="hidden" name="csrf_token" value="6666cd76f96956469e7be39d750cc7d9_8b9ea480d28d4f082df81aa15dc5f865">                <input type="hidden" name="full_vin_required" class="full-vin-required" value="0">
+                        <form id="plate-lookup1" onsubmit="return false">
                 
                 
                 
-                <div class="row fields justify-content-md-center">
+                <div class="row fields justify-content-md-center ">
                                                                 <div class="col-md-12">
                             <div class="card ">
-                                <label for="license-no">NAME</label>
-                                <input id="license-no" name="plate" type="text" placeholder="######" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;#######&#39;" value="" maxlength="128" required="" tabindex="1" aria-required="true">
+                                <label for="license-not">NAME</label>
+                                <input id="license-not" name="plate" type="text" placeholder="######" value=""  required="" tabindex="1" aria-required="true">
                             </div>
                                                     </div>
                     
                                             <div class="col-md-12">
                             <div class="card ">
                                 <label for="vin">Phone No.</label>
-                                <input id="vin" name="vin" type="text" maxlength="10" placeholder="#####" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;#####&#39;" value="" required="" tabindex="2" aria-required="true">
+                                <input id="vint" name="vin" type="text"  placeholder="#####" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;#####&#39;" value="" required="" tabindex="2" aria-required="true">
                             </div>
                                                     </div>
                     
                     <div class="col-md-12">
                         <div class="card ">
                             <label for="zip-code">RTO LOCATION</label>
-                            <input id="zip-code" name="zipcode" type="text" placeholder="RTO Location" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;Vehicle Location&#39;" value="" maxlength="128" required="" tabindex="3" aria-required="true">
+                            <input id="zip-codet" name="zipcode" type="text" placeholder="RTO Location" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;Vehicle Location&#39;" value=""  required="" tabindex="3" aria-required="true">
                         </div>
                                             </div>
 
                     <div class="col-md-12">
                         <div class="card ">
                             <label for="email">EMAIL ID</label>
-                            <input id="email" name="email" type="text" placeholder="example@domain.com" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;example@domain.com&#39;" value="" maxlength="128" required="" tabindex="4" aria-required="true">
-                            <input type="hidden" name="email_validated" id="email_validated" value="">
+                            <input id="emailt" name="email" type="text" placeholder="example@domain.com" onfocus="this.placeholder = &#39;&#39;" value="" required="" tabindex="4" aria-required="true">
+<!--                            <input type="hidden" name="email_validated" id="email_validated" value="">-->
                         </div>
                                             </div>
+<!--
 
                                             <input type="hidden" name="is_affiliate" value="no">
                         <input type="hidden" name="referral_url" value="https://www.carregistration.com/">
+-->
                                         
-                    <div class="col-24 align-self-center text-center homepage-submit-btn">
-                        <button type="submit" class="btn btn-primary btn-submit" tabindex="9">Get Started</button>
+                    <div class="col-24 align-self-center text-center">
+                        <button onclick='SubForm()' class="btn btn-primary" tabindex="9">Get Started</button>
                     </div>
 
                 </div><!--end form-row-->
@@ -287,13 +318,13 @@ Telangana's most favourite Vehicle Registration consultancy
                 </div>
                 <div class="row seals justify-content-md-center d-none">
                     <div class="col-8 col-md-6 col-lg-8">
-                        <a href="https://www.carregistration.com/#"><img src="./Car Registration_files/norton-secured.svg" alt="Norton Secured"></a>
+                        <a><img src="./Car Registration_files/norton-secured.svg" alt="Norton Secured"></a>
                     </div>
                     <div class="col-8 col-md-6 col-lg-8">
-                        <a href="https://www.carregistration.com/#"><img src="./Car Registration_files/mcafee.svg" alt="McAfee"></a>
+                        <a><img src="./Car Registration_files/mcafee.svg" alt="McAfee"></a>
                     </div>
                     <div class="col-8 col-md-6 col-lg-8">
-                        <a href="https://www.carregistration.com/#"><img src="./Car Registration_files/etrust.svg" alt="eTruste"></a>
+                        <a><img src="./Car Registration_files/etrust.svg" alt="eTruste"></a>
                     </div>
                 </div>
             </div>
