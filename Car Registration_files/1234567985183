@@ -1,2 +1,0 @@
-	(function(){var a=document.createElement('script');a.type='text/javascript';a.async=true;a.src='https://birdeye.com/embed/widget?account=156466994069074&ver=4&btype=8&wid=1234567985183&source=0&key=&update=&';
-	var b=document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a,b);})();
