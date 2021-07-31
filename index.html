@@ -305,6 +305,7 @@
 			type:"post",
 			data:$("#quick_form").serializeArray(),
 			success: function(){
+				document.getElementById("quick_form").reset();
 				alert("Thank You for choosing EaseMyRegistration.Com for the permanent registration of your car. We will reach out to you soon.")
 			},
 			error: function(){
